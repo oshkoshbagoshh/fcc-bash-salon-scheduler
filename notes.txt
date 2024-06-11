@@ -1,0 +1,35 @@
++---------------+
+|  customers  |
++---------------+
+|  customer_id  |  (primary key, serial)
+|  name         |  (varchar(50))
+|  phone        |  (varchar(20), unique)
++---------------+
+
++---------------+
+|  services    |
++---------------+
+|  service_id  |  (primary key, serial)
+|  name         |  (varchar(50))
++---------------+
+
++---------------+
+|  appointments |
++---------------+
+|  appointment_id |  (primary key, serial)
+|  customer_id    |  (integer, foreign key references customers(customer_id))
+|  service_id     |  (integer, foreign key references services(service_id))
+|  time           |  (varchar(10))
++---------------+
+```
+This schema consists of three tables: `customers`, `services`, and `appointments`.
+
+* The `customers` table has three columns: `customer_id` (primary key, serial), `name` (varchar(50)), and `phone` (varchar(20), unique).
+* The `services` table has two columns: `service_id` (primary key, serial) and `name` (varchar(50)).
+* The `appointments` table has four columns: `appointment_id` (primary key, serial), `customer_id` (integer, foreign key references `customers(customer_id)`), `service_id` (integer, foreign key references `services(service_id)`), and `time` (varchar(10)).
+
+The relationships between the tables are as follows:
+
+* A customer can have multiple appointments (one-to-many).
+* A service can be booked by multiple customers (one-to-many).
+* An appointment is associated with one customer and one service (many-to-one).
